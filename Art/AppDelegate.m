@@ -2,12 +2,18 @@
 //  AppDelegate.m
 //  Art
 //
-//  Created by 亚疆 on 16/4/20.
-//  Copyright © 2016年 yajiangwangluo. All rights reserved.
+//  Created by dkq on 16/4/20.
+//  Copyright © 2016年 kaiqiang. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "TabBarController.h"
+#import "LeftViewController.h"
 
+float PRO;
+BOOL isLogin;
+float currentHeight;
+///Users/yajiang/Desktop/Art/Art/AppDelegate.m:15:1: Expected selector for Objective-C method
 @interface AppDelegate ()
 
 @end
@@ -17,9 +23,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+   
+    TabBarController *tabbar = [[TabBarController alloc] init];
+    self.root = [RootViewController shareSingleton];
+    self.root.midView = tabbar;
+    self.root.leftView = [LeftViewController shareSingleton];
+    self.window.rootViewController = self.root;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    if (ScreenHeight == 480) {
+        PRO = 568.0 / 568.0;
+    }else if (ScreenHeight == 568){
+        PRO = ScreenHeight / 568.0;
+    }else if (ScreenHeight == 667){
+        PRO = ScreenHeight / 568.0;
+    }else if (ScreenHeight == 736){
+        PRO = ScreenHeight / 568.0;
+    }
+    
+    
     return YES;
 }
 
